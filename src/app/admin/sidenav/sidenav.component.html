@@ -1,0 +1,59 @@
+<mat-sidenav-container >
+    <mat-sidenav class="container" #sidenav mode="side" opened="true" style="position: fixed;">
+      <mat-nav-list>
+  
+        <mat-list-item style="margin-top: 20%; margin-bottom:20%;">
+          <img src="../../../assets/logov2.png" width="100%">
+        </mat-list-item>
+        <mat-list-item >
+            <div class="col-md-12 text-center">
+                <button type="button" class="btn btn-outline-warning" >SING OUT</button>
+
+            </div>
+          </mat-list-item>
+          
+        <mat-list-item  class="item-link" [routerLink]="'home'">
+            <img src="../../../assets/home.svg" height="50%">
+          <span class="margin" *ngIf="isExpanded">Home Main</span>
+        </mat-list-item>
+        <mat-list-item  class="item-link" [routerLink]="'shops'">
+            <img src="../../../assets/shop.svg" height="50%">
+         <span class="margin" *ngIf="isExpanded">Shops</span>
+       </mat-list-item>
+       <mat-list-item class="item-link" [routerLink]="'store'">
+        <img src="../../../assets/product.svg" height="50%">
+      
+     <span class="margin" *ngIf="isExpanded">Products</span>
+   </mat-list-item>
+       <mat-list-item class="item-link" [routerLink]="'event'">
+        <img src="../../../assets/event.svg" height="50%">
+      <span class="margin" *ngIf="isExpanded">Events</span>
+    </mat-list-item>
+       
+   <mat-list-item class="item-link" [routerLink]="'store'">
+    <img src="../../../assets/store.svg" height="50%">
+  
+ <span class="margin"  *ngIf="isExpanded">Tynass Store</span>
+</mat-list-item>
+<mat-list-item class="item-link" [routerLink]="'clients'">
+    <img src="../../../assets/clients.svg" height="50%">
+ <span class="margin" *ngIf="isExpanded">Clients</span>
+</mat-list-item>
+<mat-list-item class="item-link" [routerLink]="'info'">
+    <img src="../../../assets/seller.svg" height="50%">
+  
+ <span class="margin" *ngIf="isExpanded">Seller</span>
+</mat-list-item>
+
+        
+        
+  
+      </mat-nav-list>
+    </mat-sidenav>
+  
+    <div class="content">
+    
+      <router-outlet></router-outlet>
+    </div>
+  
+</mat-sidenav-container>

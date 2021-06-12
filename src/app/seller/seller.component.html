@@ -1,0 +1,29 @@
+
+<body>
+  <header>
+  <div class="wrapper">
+      <div class="logo">
+          <img src="../../assets/logoVF-01.png"  alt="">
+      </div>
+<ul class="nav-area">
+<li><a href="#">Home</a></li>
+<li><a href="#">About</a></li>
+<ng-container *ngIf="!token">
+  <li ><a href="#">Log In</a></li>
+</ng-container>
+<ng-container *ngIf="token">
+  <li ><a href="#">My Account</a></li>
+  <li ><a href="#">My products</a></li>
+  <li ><button type="button" class="btn btn-outline-light" (click)="logOut()">Log out</button></li>
+</ng-container>
+  
+
+
+</ul>
+</div>
+<div class="welcome-text">
+<router-outlet></router-outlet></div>
+</header>
+
+</body>
+

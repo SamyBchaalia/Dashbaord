@@ -1,0 +1,74 @@
+<div class="container ">
+<div class="search-div">
+    <button mat-raised-button  (click)="onCreate()">
+      <mat-icon>add</mat-icon>Create
+    </button>
+    <mat-form-field class="search-form-field" floatLabel="never">
+        <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
+        <button mat-button matSuffix mat-icon-button aria-label="Clear"*ngIf="searchKey"  (click)="onSearchClear()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      </div>
+
+<div class="mat-elevation-z8" style="position:fixed;">
+    <mat-table [dataSource]="ListData" matSort>
+        <ng-container matColumnDef="storeName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>store Name</mat-header-cell>
+          <mat-cell *matCellDef="let element"><div style="  font-weight: bold">{{element.storeName}}</div></mat-cell>
+        </ng-container>
+  
+    <ng-container matColumnDef="storeDescriptionShort">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>storeDescriptionShort</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.storeDescriptionShort}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="storeDescription">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>storeDescription</mat-header-cell>
+        <mat-cell *matCellDef="let element"><div style="font-size:small ;font-family: 'Times New Roman', Times, serif; color: grey;">{{element.storeDescription.substring(0,20)+'...'}}</div></mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="storeImage">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>storeImage</mat-header-cell>
+        <mat-cell class="margin" *matCellDef="let element"><img width="70%"
+            height="50%"[src]="element.storeImage" style="margin-top: 10%;margin-bottom: 10%;"></mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="storeLocation">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>storeLocation</mat-header-cell>
+        <mat-cell *matCellDef="let element"><div style="font-size:small ;font-family: 'Times New Roman', Times, serif; color: grey;">{{element.storeLocation}}</div></mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="openingHour">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>openingHour</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.openingHour}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="longitude">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>longitude</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.longitude}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="latitude">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>latitude</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.latitude}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-icon-button (click)="onEdit(row)"><mat-icon>launch</mat-icon></button>
+          <button mat-icon-button color="warn" (click)="onDelete(row.id)"><mat-icon>delete_outline</mat-icon></button>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="loading">
+        <mat-footer-cell *matFooterCellDef colspan="6">
+          Loading data...
+        </mat-footer-cell>
+      </ng-container>
+      <ng-container matColumnDef="noData">
+        <mat-footer-cell *matFooterCellDef colspan="6">
+          No data.
+        </mat-footer-cell>
+      </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':ListData!=null}"></mat-footer-row>
+        <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(ListData!=null && ListData.data.length==0)}"></mat-footer-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="3" showFirstLastButtons></mat-paginator>
+</div>
+</div>
